@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>vue-basic | 我的博客</title>
+  <title>管理github/gitlab生成多个ssh key | Snow&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="vue-basic">
-<meta property="og:url" content="http://yoursite.com/2019/07/12/vue-basic/index.html">
-<meta property="og:site_name" content="我的博客">
+  <meta name="description" content="由于公司代码管理放在了gitlab上，而个人代码放在github上，因此需要生成多个ssh key  生成gitlab的ssh key值 ssh-keygen -t rsa -C “youremail@yourcompany.com“ 上一步回车后。会询问ssh key文件存放在哪里（默认是/Users/admin/.ssh/id_rsa，如果不想切换地址，那就直接回车） 上一步回车之后，会让你">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="管理github&#x2F;gitlab生成多个ssh key">
+<meta property="og:url" content="http://yoursite.com/2019/07/12/many-ssh-key/index.html">
+<meta property="og:site_name" content="Snow&#39;s Blog">
+<meta property="og:description" content="由于公司代码管理放在了gitlab上，而个人代码放在github上，因此需要生成多个ssh key  生成gitlab的ssh key值 ssh-keygen -t rsa -C “youremail@yourcompany.com“ 上一步回车后。会询问ssh key文件存放在哪里（默认是/Users/admin/.ssh/id_rsa，如果不想切换地址，那就直接回车） 上一步回车之后，会让你">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-12T02:17:06.000Z">
+<meta property="og:updated_time" content="2019-07-12T09:24:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue-basic">
+<meta name="twitter:title" content="管理github&#x2F;gitlab生成多个ssh key">
+<meta name="twitter:description" content="由于公司代码管理放在了gitlab上，而个人代码放在github上，因此需要生成多个ssh key  生成gitlab的ssh key值 ssh-keygen -t rsa -C “youremail@yourcompany.com“ 上一步回车后。会询问ssh key文件存放在哪里（默认是/Users/admin/.ssh/id_rsa，如果不想切换地址，那就直接回车） 上一步回车之后，会让你">
   
-    <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Snow&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -47,7 +51,7 @@
 			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">snow</a></h1>
+		  <h1 class="header-author"><a href="/">Snow</a></h1>
 		</hgroup>
 		
 
@@ -105,7 +109,7 @@
 				<img src="" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">snow</h1>
+			  <h1 class="header-author js-header-author">Snow</h1>
 			</hgroup>
 			
 			
@@ -151,27 +155,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vue-basic" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-many-ssh-key" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      vue-basic
+      管理github/gitlab生成多个ssh key
     </h1>
   
 
         
-        <a href="/2019/07/12/vue-basic/" class="archive-article-date">
-  	<time datetime="2019-07-12T02:17:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-12</time>
+        <a href="/2019/07/12/many-ssh-key/" class="archive-article-date">
+  	<time datetime="2019-07-12T08:46:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>由于公司代码管理放在了gitlab上，而个人代码放在github上，因此需要生成多个ssh key</p>
+</blockquote>
+<h2 id="生成gitlab的ssh-key值"><a href="#生成gitlab的ssh-key值" class="headerlink" title="生成gitlab的ssh key值"></a>生成gitlab的ssh key值</h2><ol>
+<li>ssh-keygen -t rsa -C “<a href="mailto:youremail@yourcompany.com" target="_blank" rel="noopener">youremail@yourcompany.com</a>“</li>
+<li>上一步回车后。会询问ssh key文件存放在哪里（默认是/Users/admin/.ssh/id_rsa，如果不想切换地址，那就直接回车）</li>
+<li>上一步回车之后，会让你输入一个secure passphrase(可以直接回车)</li>
+<li>完成之后，到～/.ssh下可以查看到id_rsa和id_rsa.pub，将id_rsa.pub里的key拷出来，添加到你的gitlab账户里就行了</li>
+</ol>
+<h2 id="生成github的ssh-key值"><a href="#生成github的ssh-key值" class="headerlink" title="生成github的ssh key值"></a>生成github的ssh key值</h2><blockquote>
+<p>接着在github.com网站上再生成一个ssh key,生成过程与上一次唯一不同的地方在于保存ssh key的文件要换一下，假如上一次是/Users/admin/.ssh/id_rsa,那么这次就可以切换成/Users/you/.ssh/id_rsa_github，相应的也会生成一个id_rsa_github.pub；</p>
+</blockquote>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li><p>因为SSH默认只读取id_rsa,为了让SSH识别新的私钥,需要使用命令将其添加到SSH agent,命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">ssh-add ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若执行ssh-add时提示“Could not open a connection to your authentication agent”,则执行下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后再运行ssh-add命令(可以通过ssh-add -l查看私钥列表)；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接着修改配置文件<br>在~./ssh目录下新建一个config文件,命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　touch config</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>编辑config文件，往里添加内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitlab</span></span><br><span class="line">Host gitlab.com</span><br><span class="line">HostName gitlab.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"><span class="comment"># GitHub</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>找到.ssh/id_rsa_github.pub文件，打开复制里面的内容，打开github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key，将刚复制的内容黏贴到key那里，title随便填，保存。</p>
+</li>
+<li><p>最后测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>输出：Hi snow20170831! You’ve successfully authenticated, but GitHub does not provide shell access.就表示成功的连上github了</p>
+
       
 
       
@@ -200,6 +243,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -250,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/12/vue-basic/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/12/many-ssh-key/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,16 +316,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-  
-    <a href="/2019/07/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -309,7 +353,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 snow
+    		&copy; 2019 Snow
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -390,6 +434,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
