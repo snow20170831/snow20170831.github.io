@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Snow&#39;s Blog">
 <meta property="og:description" content="由于公司代码管理放在了gitlab上，而个人代码放在github上，因此需要生成多个ssh key  生成gitlab的ssh key值 ssh-keygen -t rsa -C “youremail@yourcompany.com“ 上一步回车后。会询问ssh key文件存放在哪里（默认是/Users/admin/.ssh/id_rsa，如果不想切换地址，那就直接回车） 上一步回车之后，会让你">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-12T09:24:19.000Z">
+<meta property="og:updated_time" content="2019-07-12T09:54:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="管理github&#x2F;gitlab生成多个ssh key">
 <meta name="twitter:description" content="由于公司代码管理放在了gitlab上，而个人代码放在github上，因此需要生成多个ssh key  生成gitlab的ssh key值 ssh-keygen -t rsa -C “youremail@yourcompany.com“ 上一步回车后。会询问ssh key文件存放在哪里（默认是/Users/admin/.ssh/id_rsa，如果不想切换地址，那就直接回车） 上一步回车之后，会让你">
@@ -188,20 +188,25 @@
 <p>接着在github.com网站上再生成一个ssh key,生成过程与上一次唯一不同的地方在于保存ssh key的文件要换一下，假如上一次是/Users/admin/.ssh/id_rsa,那么这次就可以切换成/Users/you/.ssh/id_rsa_github，相应的也会生成一个id_rsa_github.pub；</p>
 </blockquote>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
-<li><p>因为SSH默认只读取id_rsa,为了让SSH识别新的私钥,需要使用命令将其添加到SSH agent,命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">ssh-add ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>若执行ssh-add时提示“Could not open a connection to your authentication agent”,则执行下面的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然后再运行ssh-add命令(可以通过ssh-add -l查看私钥列表)；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接着修改配置文件<br>在~./ssh目录下新建一个config文件,命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　touch config</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>因为SSH默认只读取id_rsa,为了让SSH识别新的私钥,需要使用命令将其添加到SSH agent,命令如下：</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">ssh-add ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>若执行ssh-add时提示“Could not open a connection to your authentication agent”,则执行下面的命令：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>然后再运行ssh-add命令(可以通过ssh-add -l查看私钥列表)；</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>接着修改配置文件<br>在~./ssh目录下新建一个config文件,命令如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch config</span><br></pre></td></tr></table></figure>
+
 <p>编辑config文件，往里添加内容如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitlab</span></span><br><span class="line">Host gitlab.com</span><br><span class="line">HostName gitlab.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"><span class="comment"># GitHub</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
 
@@ -209,10 +214,10 @@
 <li><p>找到.ssh/id_rsa_github.pub文件，打开复制里面的内容，打开github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key，将刚复制的内容黏贴到key那里，title随便填，保存。</p>
 </li>
 <li><p>最后测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
 <p>输出：Hi snow20170831! You’ve successfully authenticated, but GitHub does not provide shell access.就表示成功的连上github了</p>
 
       
